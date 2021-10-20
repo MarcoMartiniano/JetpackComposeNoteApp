@@ -32,7 +32,7 @@ class NotesViewModel @Inject constructor(
         getNotes(NoteOrder.Date(OrderType.Descending))
     }
 
-    fun OnEvent(event: NotesEvent){
+    fun onEvent(event: NotesEvent){
         when(event){
             is NotesEvent.Order -> {
                 if(state.value.noteOrder::class  == event.noteOrder::class &&
