@@ -1,6 +1,6 @@
-package com.marco.jpappnote
+package com.marco.jpappnote.feature_note.presentation
 
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent

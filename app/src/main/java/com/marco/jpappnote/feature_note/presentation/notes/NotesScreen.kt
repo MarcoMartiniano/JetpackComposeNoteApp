@@ -83,7 +83,9 @@ fun NotesScreen(
                     }
                 )
             }
+
             Spacer(modifier = Modifier.height(16.dp))
+
             LazyColumn(modifier = Modifier.fillMaxSize()){
                 items(state.notes){ note ->
                     NoteItem(
@@ -101,7 +103,7 @@ fun NotesScreen(
                             scope.launch {
                                 val result = scaffoldState.snackbarHostState.showSnackbar(
                                     message = "Note deleted",
-                                    actionLabel = "undo"
+                                    actionLabel = "Undo"
                                 )
                                 if(result == SnackbarResult.ActionPerformed){
                                     viewModel.onEvent(NotesEvent.RestoreNote)

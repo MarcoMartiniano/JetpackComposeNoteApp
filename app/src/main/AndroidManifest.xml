@@ -11,8 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JPAppNote">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".feature_note.presentation.MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.JPAppNote"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
