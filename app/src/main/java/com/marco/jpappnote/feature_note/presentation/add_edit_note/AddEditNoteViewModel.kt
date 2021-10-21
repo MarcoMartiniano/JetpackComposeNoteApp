@@ -54,7 +54,7 @@ class AddEditNoteViewModel @Inject constructor(
                             text = note.content,
                             isHintVisible = false
                         )
-
+                        _noteColor.value = note.color
                     }
                 }
             }
