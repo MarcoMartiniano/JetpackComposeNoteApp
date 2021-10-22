@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Sort
@@ -13,9 +14,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.marco.jpappnote.core.util.TestTags
 import com.marco.jpappnote.feature_note.presentation.notes.components.NoteItem
 import com.marco.jpappnote.feature_note.presentation.notes.components.OrderSection
 import com.marco.jpappnote.feature_note.presentation.util.Screen
@@ -39,7 +42,7 @@ fun NotesScreen(
             },
             backgroundColor = MaterialTheme.colors.primary
             ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Add note")
+                Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
             }
         },
         scaffoldState = scaffoldState
@@ -76,6 +79,7 @@ fun NotesScreen(
                 OrderSection(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .testTag(TestTags.ORDER_SECTION)
                         .padding(vertical = 16.dp),
                     noteOrder = state.noteOrder,
                     onOrderChange = {

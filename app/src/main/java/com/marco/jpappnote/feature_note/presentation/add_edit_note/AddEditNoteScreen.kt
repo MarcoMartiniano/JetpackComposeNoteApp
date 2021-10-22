@@ -1,8 +1,6 @@
 package com.marco.jpappnote.feature_note.presentation.add_edit_note
 
-import android.widget.Space
 import androidx.compose.animation.Animatable
-import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -21,9 +19,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.marco.jpappnote.core.util.TestTags
 import com.marco.jpappnote.feature_note.domain.model.Note
 import com.marco.jpappnote.feature_note.presentation.add_edit_note.components.TransparentHintTextField
 import kotlinx.coroutines.flow.collectLatest
@@ -69,7 +69,7 @@ fun AddEditNoteScreen(
                 viewModel.onEvent(AddEditNoteEvent.SaveNote)
             }, backgroundColor = MaterialTheme.colors.primary
             ) {
-                Icon(imageVector = Icons.Default.Save, contentDescription = "Save note")
+                Icon(imageVector = Icons.Default.Save, contentDescription = "Save")
             }
         },
         scaffoldState = scaffoldState
@@ -87,6 +87,7 @@ fun AddEditNoteScreen(
                     .padding(8.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
+                var countForTest: Int = 0
                 Note.noteColors.forEach {
                     color ->
                     val colorInt = color.toArgb()
@@ -96,6 +97,7 @@ fun AddEditNoteScreen(
                             .shadow(15.dp, CircleShape)
                             .clip(CircleShape)
                             .background(color)
+                            .testTag("Color$countForTest")
                             .border(
                                 width = 3.dp,
                                 color = if (viewModel.noteColor.value == colorInt) {
@@ -115,6 +117,7 @@ fun AddEditNoteScreen(
                                 viewModel.onEvent(AddEditNoteEvent.ChangeColor(colorInt))
                             }
                     )
+                    countForTest++
                 }
             }
             Spacer(modifier = Modifier.height(16.dp))
@@ -129,7 +132,8 @@ fun AddEditNoteScreen(
                 },
                 isHintVisible = titleState.isHintVisible,
                 singleLine = true,
-                textStyle = MaterialTheme.typography.h5
+                textStyle = MaterialTheme.typography.h5,
+                testTag = TestTags.TITLE_TEXT_FIELD
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -144,7 +148,8 @@ fun AddEditNoteScreen(
                 },
                 isHintVisible = contentState.isHintVisible,
                 textStyle = MaterialTheme.typography.body1,
-                modifier = Modifier.fillMaxHeight()
+                modifier = Modifier.fillMaxHeight(),
+                testTag = TestTags.CONTENT_TEXT_FIELD
             )
         }
     }

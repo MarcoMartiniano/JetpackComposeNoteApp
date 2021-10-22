@@ -17,10 +17,14 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.clipPath
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.ColorUtils
+import com.marco.jpappnote.core.util.TestTags
 import com.marco.jpappnote.feature_note.domain.model.Note
 
 
@@ -34,6 +38,11 @@ fun NoteItem(
 ){
     Box(
         modifier = modifier
+            .testTag(TestTags.NOTE_ITEM)
+            .semantics {
+                contentDescription =
+                    "Color${note.color}"
+            }
     ){
         Canvas(modifier = Modifier.matchParentSize()){
             val clipPath = Path().apply {
